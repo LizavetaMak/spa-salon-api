@@ -1,4 +1,3 @@
-﻿
 const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const Role = require('_helpers/role');
@@ -37,7 +36,7 @@ async function authenticate({ username, password }) {
 
     const result= await poolPromise.execute(sql);
     const user = result[0];
-console.log(user[0].id_user);
+    console.log(user[0].id_user);
     console.log(user[0].id_employee===null);
     if (user.length!==0) {
         if(user[0].id_employee!==null)
@@ -99,11 +98,11 @@ async function getAllMasters() {
     return masters;
 }
 async function registration({login,password, phone,name,birthday_user}) {
-console.log(login,password, phone,name,birthday_user);
+    console.log(login,password, phone,name,birthday_user);
     let sql = `call Regestration(\"${login}\",\"${password}\",\"${phone}\",\"${name}\",\'${birthday_user}\'); `;
     console.log(sql);
     const result= await poolPromise.execute(sql);
-return result;
+    return result;
 
 }
 async function getServicesByEmployee(id_serv) {
@@ -159,7 +158,7 @@ async function changeStatusEmployee(  {id_status,id_service, id_reservation}) {
 }
 
 async function AddReservation({id_serv,   id_emp,   r_date,t_s, e_t }, id_user) {
-console.log(id_user);
+    console.log(id_user);
     let sql = `call r (${id_user}) `
     const result= await poolPromise.execute(sql);
     const id_res = result[0][0][0].id_res;
